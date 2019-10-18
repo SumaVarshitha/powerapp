@@ -1,6 +1,9 @@
 pipeline{
 agent any 
 
+environment{
+       sonarscanner = tool 'sonarqube'
+       }
 stages{
 
 stage('clean and build'){
