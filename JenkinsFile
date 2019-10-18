@@ -1,0 +1,51 @@
+pipeline{
+agent any 
+
+stages{
+
+stage('clean and build'){
+steps{
+       sh 'mvn clean'
+       sh 'mvn install'
+}
+
+}
+
+stage("SonarQube analysis") {
+       
+            steps {
+              withSonarQubeEnv('sonarqube') {
+                sh 'mvn sonar:sonar'
+              }
+            }
+          }
+  
+       
+      /* stage("Quality Gate") {
+            steps {
+              timeout(time: 1, unit: 'HOURS') {
+                waitForQualityGate abortPipeline: true
+              }
+            }
+          }*/
+       
+       
+       
+       
+       
+   stage('Nexus Artifact Upload') {
+          steps{
+             withCredentials([usernamePassword(credentialsId: 'nexus_credentials', passwordVariable: 'pass', usernameVariable: 'userId')]) {
+            sh   'curl -F file=@target/sample-0.0.1-SNAPSHOT.war -u $userId:$pass http://ec2-18-224-155-110.us-east-2.compute.amazonaws.com:8081/nexus/content/repositories/devopstraining/freestyle/sample-0.0.1-SNAPSHOT.war'
+             
+             }}
+          }
+
+  stage('deploy'){
+    steps{
+    deploy adapters: [tomcat8(credentialsId: 'ab15dd36-8844-48ba-872a-92426dbd8c57', path: '', url: 'http://3.15.0.139:8088')], contextPath: 'power', onFailure: false, war: '**/*.war'
+    }
+  }
+  
+}
+}
