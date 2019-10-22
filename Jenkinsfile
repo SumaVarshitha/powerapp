@@ -43,7 +43,7 @@ stage("SonarQube analysis") {
 
  stage('Chef and Tomcat'){
  steps{
- sh 'sudo rm -rf ~/chef/tomcat/tomcat/recipes/local-mode-cache' 
+ sh 'rm -rf ~/chef/tomcat/tomcat/recipes/local-mode-cache' 
  
  }
  }
