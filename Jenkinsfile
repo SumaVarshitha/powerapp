@@ -44,7 +44,7 @@ stage("SonarQube analysis") {
  stage('Chef and Tomcat'){
  steps{
  sh 'rm -rf ~/chef/tomcat/tomcat/recipes/local-mode-cache' 
- sh 'chef-solo -c /home/ec2-user/chef/tomcat/tomcat/recipes/solo.rb -j /home/ec2-user/chef/tomcat/tomcat/recipes/dna.json'
+ sh 'sudo chef-solo -c /home/ec2-user/chef/tomcat/tomcat/recipes/solo.rb -j /home/ec2-user/chef/tomcat/tomcat/recipes/dna.json'
  }
  }
   
