@@ -41,11 +41,12 @@ stage("SonarQube analysis") {
              }}
           }
 
-  stage('deploy'){
-    steps{
-    deploy adapters: [tomcat8(credentialsId: 'tomcat-credentials', path: '', url: 'http://13.59.212.1:8089')], contextPath: 'power', onFailure: false, war: '**/*.war'
-    }
-  }
+ stage('Chef and Tomcat'){
+ steps{
+ sh 'root@18.188.108.255 rm -rf /home/ec2-user/chef/tomcat/tomcat/recipes/local-mode-cache' 
+ 
+ }
+ }
   
 }
 }
