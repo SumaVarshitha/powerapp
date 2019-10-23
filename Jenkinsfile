@@ -5,8 +5,7 @@ stages{
 
 stage('clean and build'){
 steps{
-       sh 'mvn clean'
-       sh 'mvn install'
+       sh 'mvn clean install'
 }
 
 }
