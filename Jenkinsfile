@@ -18,7 +18,7 @@ steps{
               }
             }
           }*/
- stage('Sonar') {
+/* stage('Sonar') {
             environment {
                 scannerHome=tool 'sonarqube'
             }
@@ -27,8 +27,22 @@ steps{
                     sh "mvn $USER:$PASS -Dsonar.host.url=http://ec2-18-224-155-110.us-east-2.compute.amazonaws.com:9000"
                 }
             }
-          }
-       
+          }*/
+        stage('SonarQube') 
+       {
+           
+            environment {
+                scannerHome=tool 'sonarqube'
+            }
+             //tools {scannerHome "SonarScanner"}
+        steps{
+             withSonarQubeEnv(credentialsId: 'sonar_token', installationName: 'sonar_server') {
+                  sh '${scannerHome}/bin/sonar-scanner -Dproject.settings=./sonar-project.properties'
+              }
+              //sh 'npm run sonar'
+           }
+            
+        }
      stage("Quality Gate") {
             steps {
               timeout(time: 1, unit: 'HOURS') {
