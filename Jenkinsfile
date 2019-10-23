@@ -10,14 +10,14 @@ steps{
 
 }
 
-/*stage("SonarQube analysis") {
+stage("SonarQube analysis") {
        
             steps {
               withSonarQubeEnv('sonarqube') {
-                sh 'mvn sonar:sonar'
+                sh 'mvn sonar:sonar -Pprofile'
               }
             }
-          }*/
+          }
 /* stage('Sonar') {
             environment {
                 scannerHome=tool 'sonarqube'
