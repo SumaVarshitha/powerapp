@@ -4,6 +4,15 @@
   <artifactId>demopipe</artifactId>
   <version>${BUILD_NUMBER}</version>
   <packaging>war</packaging>
+	
+	 <profiles>
+  <profile>
+    <id>profile1</id> 
+    <properties>
+     <sonar.profile>sonar-project.properties</sonar.profile>
+     </properties>
+  </profile>
+</profiles>
   <dependencies>
    <!-- https://mvnrepository.com/artifact/junit/junit -->
 <dependency>
