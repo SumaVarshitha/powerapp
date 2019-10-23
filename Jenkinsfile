@@ -36,7 +36,7 @@ steps{
             }
              //tools {scannerHome "SonarScanner"}
         steps{
-             withSonarQubeEnv(credentialsId: 'sonar_token', installationName: 'sonar_server') {
+             withSonarQubeEnv(credentialsId: 'nexus_credentials', installationName: 'sonar_server') {
                   sh '${scannerHome}/bin/sonar-scanner -Dproject.settings=./sonar-project.properties'
               }
               //sh 'npm run sonar'
