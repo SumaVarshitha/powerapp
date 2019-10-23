@@ -23,7 +23,7 @@ steps{
                 scannerHome=tool 'sonarqube'
             }
             steps{
-                withCredentials([[ credentialsId:'Sonar_Cred', usernameVariable: 'USER', passwordVariable: 'PASS']]){
+                withCredentials([[[$class: 'UsernamePasswordMultiBinding', credentialsId:'Sonar_Cred', usernameVariable: 'USER', passwordVariable: 'PASS']]){
                     sh "mvn $USER:$PASS -Dsonar.host.url=http://ec2-18-224-155-110.us-east-2.compute.amazonaws.com:9000"
                 }
             }
