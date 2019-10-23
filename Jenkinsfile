@@ -14,7 +14,7 @@ stage("SonarQube analysis") {
        
             steps {
               withSonarQubeEnv('sonarqube') {
-                sh 'mvn sonar:sonar -Pprofile'
+                sh 'mvn sonar:sonar -Pprofile1'
               }
             }
           }
