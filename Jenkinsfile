@@ -10,15 +10,15 @@ steps{
 
 }
 
-/*stage("SonarQube analysis") {
+stage("SonarQube analysis") {
        
             steps {
               withSonarQubeEnv('sonarqube') {
                 sh 'mvn sonar:sonar'
               }
             }
-          }*/
-  stage('Sonar') {
+          }
+ /* stage('Sonar') {
             environment {
                 scannerHome=tool 'sonarqube'
             }
@@ -26,7 +26,7 @@ steps{
                 withCredentials([[ credentialsId:'Sonar_Cred', usernameVariable: 'USER', passwordVariable: 'PASS']]){
                     sh "mvn $USER:$PASS -Dsonar.host.url=http://ec2-18-224-155-110.us-east-2.compute.amazonaws.com:9000"
                 }
-            }
+            }*/
         
        
      stage("Quality Gate") {
