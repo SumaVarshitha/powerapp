@@ -28,7 +28,7 @@ stage("SonarQube analysis") {
                 }
             }
           }*/
-        stage('SonarQube') 
+        /*stage('SonarQube') 
        {
            
             environment {
@@ -42,7 +42,7 @@ stage("SonarQube analysis") {
               //sh 'npm run sonar'
            }
             
-        }
+        }*/
      stage("Quality Gate") {
             steps {
               timeout(time: 1, unit: 'HOURS') {
