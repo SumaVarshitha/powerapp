@@ -42,9 +42,7 @@ stage("SonarQube analysis") {
 
  stage('Chef and Tomcat'){
  steps{
-        sh 'sudo cd /home/ec2-user/chef/tomcat'
-        sh 'sudo git pull'
-        sh 'sudo cd ../..'
+        sh 'git -C /home/ec2-user/chef/tomcat pull'
  sh 'sudo rm -rf ~/chef/tomcat/tomcat/recipes/local-mode-cache' 
  sh 'sudo chef-solo -c /home/ec2-user/chef/tomcat/tomcat/recipes/solo.rb -j /home/ec2-user/chef/tomcat/tomcat/recipes/dna.json'
  }
