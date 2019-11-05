@@ -73,14 +73,14 @@ stage("SonarQube analysis") {
  }
   
 }
-        post { 
-         success { 
-            echo 'notified to slack '
-            slackSend (color: '#00FF00', message: " JOB SUCCESSFUL: Job '${JOB_NAME} [${BUILD_NUMBER}]' (${BUILD_URL})")
-         }
-         failure {
-            echo 'notified to slack'
-            slackSend (color: '#FF0000', message: " JOB FAILED: Job '${JOB_NAME} [${BUILD_NUMBER}]' (${BUILD_URL})")
-         }
+       // post { 
+         //success { 
+           // echo 'notified to slack '
+            //slackSend (color: '#00FF00', message: " JOB SUCCESSFUL: Job '${JOB_NAME} [${BUILD_NUMBER}]' (${BUILD_URL})")
+         //}
+         //failure {
+           // echo 'notified to slack'
+            //slackSend (color: '#FF0000', message: " JOB FAILED: Job '${JOB_NAME} [${BUILD_NUMBER}]' (${BUILD_URL})")
+         //}
     }
 }
