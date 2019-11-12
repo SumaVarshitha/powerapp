@@ -46,13 +46,17 @@ stage("SonarQube analysis") {
            }
             
         }*/
-    /* stage("Quality Gate") {
+     stage("Quality Gate") {
             steps {
               timeout(time: 1, unit: 'HOURS') {
                 waitForQualityGate abortPipeline: true
               }
             }
-          }*/
+            post {
+              always{
+       jiraSendBuildInfo branch: '', site: 'jira1320.atlassian.net'
+              }}
+          }
        
        
        
