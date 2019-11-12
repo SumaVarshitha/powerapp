@@ -54,7 +54,7 @@ stage("SonarQube analysis") {
             }
             post {
               always{
-       jiraSendDeploymentInfo environmentId: '', environmentName: '', environmentType: 'development', site: 'jira1320.atlassian.net'
+       jiraSendDeploymentInfo environmentId: 'env', environmentName: 'delploy', environmentType: 'development', site: 'jira1320.atlassian.net'
               }}
           }
        
