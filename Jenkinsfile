@@ -7,7 +7,9 @@ stage('clean and build'){
 steps{
        sh 'mvn clean install'
 }
-
+       steps {
+       jiraSendBuildInfo branch: '', site: 'jira1320.atlassian.net'
+       }
 }
 
 stage("SonarQube analysis") {
