@@ -9,7 +9,7 @@ steps{
 }
        post {
               always{
-       jiraAddWatcher idOrKey: '${BUILD_NUMBER}', site: '', userName: 'jira'
+       jiraAddWatcher idOrKey: '${BUILD_NUMBER}', site: 'jira1320.atlassian.net', userName: 'jira'
               }}
 }
 
@@ -54,7 +54,7 @@ stage("SonarQube analysis") {
             }
             post {
               always{
-                      jiraAddWatcher idOrKey: '${BUILD_NUMBER}', site: '', userName: 'jira'
+                      jiraAddWatcher idOrKey: '${BUILD_NUMBER}', site: 'jira1320.atlassian.net', userName: 'jira'
        jiraSendDeploymentInfo environmentId: 'env', environmentName: 'delploy', environmentType: 'development', site: 'jira1320.atlassian.net'
               }}
           }
