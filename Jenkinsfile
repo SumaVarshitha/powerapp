@@ -9,7 +9,7 @@ steps{
 }
        post {
               always{
-      jiraAssignIssue failOnError: false, idOrKey: '', site: 'jira', userName: 'user'
+      jiraAssignIssue failOnError: false, idOrKey: '1', site: 'jira', userName: 'user'
               }}
 }
 
@@ -54,7 +54,7 @@ stage("SonarQube analysis") {
             }
             post {
               always{
-         jiraAssignIssue failOnError: false, idOrKey: '', site: 'jira', userName: 'user'
+         jiraAssignIssue failOnError: false, idOrKey: '1', site: 'jira', userName: 'user'
               }}
           }
        
