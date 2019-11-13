@@ -59,8 +59,8 @@ stage("SonarQube analysis") {
           }
        
        
-        stage('JIRA') {
-   
+        stage("JIRA") {
+               steps{
     def testIssue = [fields: [ // id or key must present for project.
                                project: [id: '10000'],
                                summary: 'New JIRA Created from Jenkins.',
@@ -73,7 +73,7 @@ stage("SonarQube analysis") {
 
     echo response.successful.toString()
     echo response.data.toString()
-  }
+               }}
        
        
    stage('Nexus Artifact Upload') {
