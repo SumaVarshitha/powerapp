@@ -85,8 +85,8 @@ post {
        
 }
        
-       stage('JIRA') {
-
+       stage("JIRA") {
+              steps{
     def testIssue = [fields: [ // id or key must present for project.
                                project: [id: 'PRJ'],
                                summary: 'New JIRA Created from Jenkins.',
@@ -100,7 +100,7 @@ post {
     echo response.successful.toString()
     echo response.data.toString()
   }
-       
+       }
        
        
        
