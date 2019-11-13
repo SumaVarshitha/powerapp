@@ -77,7 +77,11 @@ stage("SonarQube analysis") {
  sh 'sudo chef-solo -c /home/ec2-user/chef/tomcat/tomcat/recipes/solo.rb -j /home/ec2-user/chef/tomcat/tomcat/recipes/dna.json'
  }
  }
-  
+       post{
+              always{
+              jiraSendDeploymentInfo environmentId: 'envi', environmentName: 'development', environmentType: 'development', site: 'jira1320.atlassian.net'
+              }
+       }
 }
         post { 
          success { 
