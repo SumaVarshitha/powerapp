@@ -9,7 +9,7 @@ steps{
 }
        post {
               always{
-     jiraGetProjectStatuses idOrKey: '1', site: 'jira'
+     jiraGetProjectStatuses idOrKey: 'PRJ', site: 'jira'
               }}
 }
 
@@ -54,7 +54,7 @@ stage("SonarQube analysis") {
             }
             post {
               always{
-         jiraGetProjectStatuses idOrKey: '1', site: 'jira'
+         jiraGetProjectStatuses idOrKey: 'PRJ', site: 'jira'
               }}
           }
        
