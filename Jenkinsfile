@@ -68,24 +68,7 @@ stage("SonarQube analysis") {
              
              }}
           }
-
- stage('Chef and Tomcat'){
- steps{
-        sh 'sudo /home/ec2-user/apache/apache-tomcat-8.5.47/bin/./startup.sh '
-        sh 'sudo git -C /home/ec2-user/chef/tomcat pull'
- sh 'sudo rm -rf ~/chef/tomcat/tomcat/recipes/local-mode-cache' 
- sh 'sudo chef-solo -c /home/ec2-user/chef/tomcat/tomcat/recipes/solo.rb -j /home/ec2-user/chef/tomcat/tomcat/recipes/dna.json'
- }
-post {
-              always{
-              jiraSendDeploymentInfo environmentId: 'envi', environmentName: 'development', environmentType: 'development', site: 'jira1320.atlassian.net'
-              }
-       }
- }
-       
-}
-       
-       stage("JIRA") {
+       stage('JIRA') {
               steps{
     def testIssue = [fields: [ // id or key must present for project.
                                project: [id: 'PRJ'],
@@ -102,6 +85,23 @@ post {
   }
        }
        
+ stage('Chef and Tomcat'){
+ steps{
+        sh 'sudo /home/ec2-user/apache/apache-tomcat-8.5.47/bin/./startup.sh '
+        sh 'sudo git -C /home/ec2-user/chef/tomcat pull'
+ sh 'sudo rm -rf ~/chef/tomcat/tomcat/recipes/local-mode-cache' 
+ sh 'sudo chef-solo -c /home/ec2-user/chef/tomcat/tomcat/recipes/solo.rb -j /home/ec2-user/chef/tomcat/tomcat/recipes/dna.json'
+ }
+post {
+              always{
+              jiraSendDeploymentInfo environmentId: 'envi', environmentName: 'development', environmentType: 'development', site: 'jira1320.atlassian.net'
+              }
+       }
+ }
+       
+}
+       
+
        
        
        
