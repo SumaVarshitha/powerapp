@@ -46,7 +46,7 @@ stage("SonarQube analysis") {
            }
             
         }*/
-     stage("Quality Gate") {
+    /* stage("Quality Gate") {
             steps {
               timeout(time: 1, unit: 'HOURS') {
                 waitForQualityGate abortPipeline: true
@@ -56,7 +56,7 @@ stage("SonarQube analysis") {
               always{
          jiraGetProjectStatuses idOrKey: 'PRJ', site: 'jira'
               }}
-          }
+          }*/
        
        
        
