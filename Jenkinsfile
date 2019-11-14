@@ -85,3 +85,5 @@ stage("SonarQube analysis") {
             slackSend (color: '#FF0000', message: " JOB FAILED: Job '${JOB_NAME} [${BUILD_NUMBER}]' (${BUILD_URL})")
          }
         }
+}
+}
