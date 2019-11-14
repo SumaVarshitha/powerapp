@@ -9,7 +9,7 @@ steps{
 }
        post {
               always{
-     jiraAddComment comment: 'issue', idOrKey: 'PRJ-1', site: 'jira'
+                     jiraAddComment comment: 'Build - ${BUILD_NUMBER} failure', idOrKey: 'PRJ-1', site: 'jira'
               }}
 }
 
