@@ -9,7 +9,7 @@ steps{
 }
        post {
               always{
-     jiraGetProjectStatuses idOrKey: 'PRJ', site: 'jira'
+     jiraAddComment comment: 'issue', idOrKey: 'PRJ-1', site: 'jira'
               }}
 }
 
