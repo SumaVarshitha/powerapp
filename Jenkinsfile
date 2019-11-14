@@ -9,7 +9,7 @@ steps{
 }
        post {
               always{
-                    jiraNewIssue site: 'jira' IdOrKey: 'PRJ' comment: 'New'
+                    jiraNewIssue site: 'jira',IdOrKey: 'PRJ',comment: 'New'
               }}
 }
 
