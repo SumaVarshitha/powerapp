@@ -1,3 +1,4 @@
+@Library('Groovy')_
 pipeline{
 agent any 
 
