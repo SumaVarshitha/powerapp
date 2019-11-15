@@ -5,11 +5,11 @@ stages{
 
 stage('clean and build'){
 steps{
-       sh 'mvn clean install'
+       sh 'mn clean install'
 }
        post {
-              always{
-                    jiraNewIssue site: 'jira',idOrKey: 'PRJ',comment: 'New'
+              failure{
+                    jira()
               }}
 }
 
