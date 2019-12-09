@@ -6,7 +6,7 @@ stages{
 
 stage('clean and build'){
 steps{
-       sh 'mn clean install'
+       sh 'mvn clean install'
 }
        post {
               failure{
