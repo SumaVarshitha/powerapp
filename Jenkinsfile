@@ -1,4 +1,4 @@
-@Library('Groovy')_
+
 pipeline{
 agent any 
 
@@ -14,14 +14,7 @@ steps{
               }}
 }
 
-stage("SonarQube analysis") {
-       
-            steps {
-              withSonarQubeEnv('sonarqube') {
-                sh 'mvn sonar:sonar -Pprofile1'
-              }
-            }
-          }
+
 /* stage('Sonar') {
             environment {
                 scannerHome=tool 'sonarqube'
@@ -62,13 +55,13 @@ stage("SonarQube analysis") {
        
        
        
-   stage('Nexus Artifact Upload') {
+ /*  stage('Nexus Artifact Upload') {
           steps{
              withCredentials([usernamePassword(credentialsId: 'nexus_credentials', passwordVariable: 'pass', usernameVariable: 'userId')]) {
             sh   'curl -F file=@target/demopipe-${BUILD_NUMBER}.war -u $userId:$pass http://ec2-18-224-155-110.us-east-2.compute.amazonaws.com:8081/nexus/content/repositories/devopstraining/freestyle/falcons/demopipe-${BUILD_NUMBER}.war'
              
              }}
-          }
+          }*/
       
        
    
