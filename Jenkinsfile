@@ -1,74 +1,43 @@
 
-pipeline{
-agent any 
-
-stages{
-
-stage('clean and build'){
-steps{
-       sh 'mvn clean install'
-}
-       post {
-              failure{
-                    jira()
-              }}
-}
-
-
-/* stage('Sonar') {
-            environment {
-                scannerHome=tool 'sonarqube'
-            }
-            steps{
-                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'Sonar_Cred', usernameVariable: 'USER', passwordVariable: 'PASS']]){
-                    sh "mvn $USER:$PASS -Dsonar.host.url=http://ec2-18-224-155-110.us-east-2.compute.amazonaws.com:9000"
-                }
-            }
-          }*/
-        /*stage('SonarQube') 
-       {
-           
-            environment {
-                scannerHome=tool 'sonarqube'
-            }
-             //tools {scannerHome "SonarScanner"}
-        steps{
-             withSonarQubeEnv(credentialsId: 'nexus_credentials', installationName: 'sonar_server') {
-                  sh '${scannerHome}/bin/sonar-scanner -Dproject.settings=./sonar-project.properties'
-              }
-              //sh 'npm run sonar'
-           }
+pipeline {
+    agent any
+   
+   
+    stages {
+	    //stage('remove'){
+		 
+        stage('build') {
             
-        }*/
-    /* stage("Quality Gate") {
+		   agent {
+			   docker { image 'sumavarshitha/java-maven-node' }}
+		steps {
+			sh 'rm -rf powerapp' 
+	        sh 'git clone https://github.com/SumaVarshitha/powerapp.git'
+                sh "mvn clean package"
+            
+	    }
+        }
+        stage('SonarQube Analysis'){
+		 environment{
+               scannerHome = tool 'sonars'
+                   }
+            steps{
+               withSonarQubeEnv('sonar'){
+                    //sh '${sonarscanner}/bin/sonar-scanner -Dproject.settings=./sonar-project.properties'
+		       sh "${scannerHome}/bin/sonar-scanner"
+               //sh 'mvn sonr:sonar' 
+	       }
+            }
+        }
+
+    }
+        
+      /*  stage("Quality Gate") {
             steps {
-              timeout(time: 1, unit: 'HOURS') {
+              timeout(time: 3, unit: 'MINUTES') {
                 waitForQualityGate abortPipeline: true
               }
             }
-            post {
-              always{
-         jiraGetProjectStatuses idOrKey: 'PRJ', site: 'jira'
-              }}
-          }*/
+        }*/
        
-       
-       
-       
- /*  stage('Nexus Artifact Upload') {
-          steps{
-             withCredentials([usernamePassword(credentialsId: 'nexus_credentials', passwordVariable: 'pass', usernameVariable: 'userId')]) {
-            sh   'curl -F file=@target/demopipe-${BUILD_NUMBER}.war -u $userId:$pass http://ec2-18-224-155-110.us-east-2.compute.amazonaws.com:8081/nexus/content/repositories/devopstraining/freestyle/falcons/demopipe-${BUILD_NUMBER}.war'
-             
-             }}
-          }*/
-      
-       
-   
-
-       
-       
-       
-       
-}
 }
