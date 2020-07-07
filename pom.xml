@@ -43,6 +43,10 @@
     <version>2.2</version>
 </dependency>
   </dependencies>
+	<properties>
+   <maven.compiler.source>1.6</maven.compiler.source>
+   <maven.compiler.target>1.6</maven.compiler.target>
+ </properties>
   <build>
   <testSourceDirectory>src/test/java</testSourceDirectory>
     <plugins>
@@ -60,14 +64,7 @@
         <version>3.0.0-M3</version>
         
       </plugin>
-	    <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-            <source>1.6</source>
-            <target>1.6</target>
-        </configuration>
-    </plugin>
+	   
       <plugin>
 		<groupId>org.jacoco</groupId>
 		<artifactId>jacoco-maven-plugin</artifactId>
